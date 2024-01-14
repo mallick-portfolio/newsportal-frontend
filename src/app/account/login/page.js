@@ -1,14 +1,22 @@
 "use client";
 import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useUserLoginMutation } from "@/app/store/api/accountApi";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Login = () => {
+  const router = useRouter();
+  // initial values
   const initialValues = {
     email: "",
     password: "",
   };
+
+  // validation schema
   const validationSchema = yup.object({
     email: yup
       .string()
@@ -17,10 +25,31 @@ const Login = () => {
       .required("Email must required"),
     password: yup.string().required("Password must required"),
   });
-  const onSubmit = (values) => {
-    console.log(values);
+
+  // login api call
+  const [handleLogin, { data, isLoading }] = useUserLoginMutation();
+
+  // api response
+  useEffect(() => {
+    if (data && data?.success) {
+      Cookies.set("auth_token", data?.token?.access);
+      toast.success(data?.message, {
+        autoClose: 2000,
+        position: "bottom-right",
+      });
+      router.push("/dashboard");
+    }
+    if (data && !data?.success) {
+      toast.error(data?.message);
+    }
+  }, [data]);
+
+  // submit handler
+  const onSubmit = async (values) => {
+    await handleLogin(values);
   };
 
+  // formik
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -68,7 +97,7 @@ const Login = () => {
                 }`}
               />
 
-              <Button type="submit" color="primary">
+              <Button isLoading={isLoading} type="submit" color="primary">
                 Submit
               </Button>
             </CardBody>

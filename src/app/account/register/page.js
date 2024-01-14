@@ -242,7 +242,7 @@ const Register = () => {
                 </SelectItem>
               </Select>
 
-              <Button type="submit" color="primary">
+              <Button type="submit" isLoading={isLoading} color="primary">
                 Submit
               </Button>
             </CardBody>
