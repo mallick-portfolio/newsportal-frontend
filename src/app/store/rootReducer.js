@@ -1,4 +1,5 @@
 import { accountApi } from "./api/accountApi";
+import { newsApi } from "./api/newsApi";
 import dataSlice from "./reducer/dataSlice";
 import globalSlice from "./reducer/globalSlice";
 import modalSlice from "./reducer/modalSlice";
@@ -10,5 +11,6 @@ const rootReducer = combineReducers({
   modal: modalSlice,
   apiStateData: dataSlice,
   [accountApi.reducerPath]: accountApi.reducer,
+  [newsApi.reducerPath]: newsApi.reducer,
 });
 export default rootReducer;
