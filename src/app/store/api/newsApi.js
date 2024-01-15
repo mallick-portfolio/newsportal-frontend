@@ -31,6 +31,16 @@ export const newsApi = createApi({
       }),
       providesTags: ["category"],
     }),
+    deleteCategory: builder.mutation({
+      query: (id) => ({
+        url: `/news/category/${id}/`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${Cookies.get("auth_token")}`,
+        },
+      }),
+      invalidatesTags: ["category"],
+    }),
 
     // user login api
     userLogin: builder.mutation({
@@ -44,4 +54,8 @@ export const newsApi = createApi({
 });
 
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetCategoriesQuery, useAddCategoryMutation } = newsApi;
+export const {
+  useGetCategoriesQuery,
+  useAddCategoryMutation,
+  useDeleteCategoryMutation,
+} = newsApi;

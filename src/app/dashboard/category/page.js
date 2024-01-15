@@ -1,6 +1,8 @@
 "use client";
 import { useGetCategoriesQuery } from "@/app/store/api/newsApi";
 import {
+  BreadcrumbItem,
+  Breadcrumbs,
   Button,
   Card,
   CardBody,
@@ -20,7 +22,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import CreateCategory from "@/app/components/modal/CreateCategory";
 import { useDispatch } from "react-redux";
-import { setShowCreateCategoryModal } from "@/app/store/reducer/modalSlice";
+import {
+  setSelectedObj,
+  setShowCreateCategoryModal,
+  setShowDeleteCategoryModal,
+} from "@/app/store/reducer/modalSlice";
+import DeleteCategory from "@/app/components/modal/DeleteCategory";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -47,8 +54,18 @@ const CategoryPage = () => {
                 <FaRegEdit />
               </span>
             </Tooltip> */}
-            <Tooltip color="danger" placement="right-start" content="Delete category">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+            <Tooltip
+              color="danger"
+              placement="right-start"
+              content="Delete category"
+            >
+              <span
+                onClick={() => {
+                  dispatch(setSelectedObj(row));
+                  dispatch(setShowDeleteCategoryModal(true));
+                }}
+                className="text-lg text-danger cursor-pointer active:opacity-50"
+              >
                 <MdDeleteOutline />
               </span>
             </Tooltip>
@@ -61,7 +78,14 @@ const CategoryPage = () => {
     <div className="pr-6 ">
       <Card>
         <CardBody>
-          <div className="flex w-full justify-end">
+          <Breadcrumbs variant="solid">
+            <BreadcrumbItem>Dashboard</BreadcrumbItem>
+            <BreadcrumbItem>Category</BreadcrumbItem>
+          </Breadcrumbs>
+          <div className="flex w-full justify-between items-center">
+            <h4 className="text-lg font-semibold text-primary-500">
+              Category List
+            </h4>
             <Button
               onClick={() => dispatch(setShowCreateCategoryModal(true))}
               variant="solid"
@@ -88,6 +112,7 @@ const CategoryPage = () => {
         </CardBody>
       </Card>
       <CreateCategory />
+      <DeleteCategory />
     </div>
   );
 };

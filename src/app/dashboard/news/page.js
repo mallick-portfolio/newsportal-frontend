@@ -1,9 +1,12 @@
 "use client";
 import { useGetCategoriesQuery } from "@/app/store/api/newsApi";
 import {
+  BreadcrumbItem,
+  Breadcrumbs,
   Button,
   Card,
   CardBody,
+  Link,
   Spinner,
   Table,
   TableBody,
@@ -61,16 +64,26 @@ const NewsPage = () => {
     <div className="pr-6 ">
       <Card>
         <CardBody>
-          <div className="flex w-full justify-end">
-            <Button
-              onClick={() => dispatch(setShowCreateNewsModal(true))}
-              variant="solid"
-              color="primary"
-              startContent={<GoPlus className="text-lg" />}
-              radius="md"
-            >
-              Add News
-            </Button>
+          <Breadcrumbs variant="solid">
+            <BreadcrumbItem>Dashboard</BreadcrumbItem>
+            <BreadcrumbItem>News</BreadcrumbItem>
+          </Breadcrumbs>
+          <div className="flex w-full justify-between items-center">
+            <div>
+              <h4 className="text-lg font-semibold text-primary-500">
+                News List
+              </h4>
+            </div>
+            <Link href="/dashboard/news/create/">
+              <Button
+                variant="solid"
+                color="primary"
+                startContent={<GoPlus className="text-lg" />}
+                radius="md"
+              >
+                Add News
+              </Button>
+            </Link>
           </div>
           <div>
             <Table aria-label="Example static collection table">
