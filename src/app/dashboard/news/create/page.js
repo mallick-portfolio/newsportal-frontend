@@ -1,10 +1,8 @@
 "use client";
 
 import { BreadcrumbItem, Breadcrumbs, Card, CardBody } from "@nextui-org/react";
-
 const NewsPage = () => {
   // Editor ref
-
   return (
     <div className="pr-6 ">
       <Card>
@@ -21,12 +19,7 @@ const NewsPage = () => {
               </h4>
             </div>
           </div>
-          <div className="mt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint
-            provident aperiam earum debitis alias dolor voluptates neque, in
-            aliquid, omnis recusandae quo impedit rem totam ipsum ad modi!
-            Natus, amet!
-          </div>
+          <div className="mt-4">{/* <RichTextEditor /> */}</div>
         </CardBody>
       </Card>
     </div>

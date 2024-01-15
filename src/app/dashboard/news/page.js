@@ -22,7 +22,6 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { setShowCreateNewsModal } from "@/app/store/reducer/modalSlice";
 import CreateNews from "@/app/components/modal/CreateNews";
 
 const NewsPage = () => {

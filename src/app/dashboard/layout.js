@@ -1,7 +1,6 @@
 "use client";
 import {
   Avatar,
-  Button,
   Card,
   CardBody,
   Divider,
@@ -15,8 +14,8 @@ import { menus } from "./data";
 import ReduxProvider from "../store/ReduxProvider";
 
 const DashboardLayout = ({ children }) => {
-  const router = usePathname();
-  const allPath = router.split("/");
+  const pathName = usePathname();
+  const allPath = pathName.split("/");
   const currentPath = allPath[allPath.length - 1];
   console.log(currentPath);
   return (
@@ -42,7 +41,7 @@ const DashboardLayout = ({ children }) => {
                     key={menu.id}
                     color="danger"
                     className={`${
-                      menu.title.toLocaleLowerCase() === currentPath
+                      pathName.includes(menu.title.toLocaleLowerCase())
                         ? "bg-[#f31260] text-white"
                         : ""
                     }`}

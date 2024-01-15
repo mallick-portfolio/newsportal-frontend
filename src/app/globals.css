@@ -40,25 +40,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
-#root {
-  margin: 1rem 4rem;
-}
-
-#root .ql-container {
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  background: #fefcfc;
-}
-
-/* Snow Theme */
-#root .ql-snow.ql-toolbar {
-  display: block;
-  background: #eaecec;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-}
-
-#root .ql-editor {
-  min-height: 18em;
+.ql-editor {
+  min-height: 500px; /* Set the minimum height as per your requirement */
 }
